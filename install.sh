@@ -3,6 +3,8 @@
 echo "Script by @MOMOGUNx"
 echo ""
 
+pkg install git -y
+
 # Semak whitelist
 read -p "Masukkan username anda: " username
 ALLOWED_URL="https://raw.githubusercontent.com/MOMOGUNx/xmrig-termux-installer/main/allowed_users.txt"
