@@ -15,10 +15,15 @@ else
 fi
 
 # Clone dahulu
-echo ""
 echo "Cloning repo XMRig..."
-git clone https://github.com/xmrig/xmrig.git
-cd xmrig
+git clone https://github.com/xmrig/xmrig.git || { echo "Gagal clone repo."; exit 1; }
+
+if [ -d "xmrig" ]; then
+    cd xmrig
+else
+    echo "Direktori xmrig tidak wujud. Clone gagal?"
+    exit 1
+fi
 
 # Install dependensi selepas clone
 echo ""
