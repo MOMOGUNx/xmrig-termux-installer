@@ -29,6 +29,7 @@ pkg install git cmake build-essential clang openssl curl -y
 # Compile
 echo ""
 echo "Memulakan proses compile XMRig (sabar, ini mungkin ambil masa)..."
+cd xmrig
 mkdir build && cd build
 cmake -DWITH_HWLOC=OFF ..
 make -j$(nproc)
