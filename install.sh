@@ -1,5 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
+[ ! -x "$0" ] && chmod +x "$0" && exec "$0"
+
 echo "Script by @MOMOGUNx"
 echo ""
 
