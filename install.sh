@@ -38,7 +38,7 @@ if [ ! -f "$WALLET_FILE" ]; then
 fi
 
 # Muat turun menu.sh
-curl -s -o ~/xmrig/menu.sh https://raw.githubusercontent.com/YOUR_GITHUB_USERNAME/xmrig-termux-installer/main/menu.sh
+curl -s -o ~/xmrig/menu.sh https://raw.githubusercontent.com/MOMOGUNx/xmrig-termux-installer/main/menu.sh
 chmod +x ~/xmrig/menu.sh
 
 echo "Pemasangan selesai. Jalankan menu dengan:"
