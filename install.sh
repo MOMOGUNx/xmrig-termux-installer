@@ -36,8 +36,9 @@ make -j$(nproc)
 # Muat turun menu
 echo ""
 echo "Muat turun menu..."
-curl -s -o ~/menu.sh https://raw.githubusercontent.com/MOMOGUNx/xmrig-termux-installer/main/menu.sh
-chmod +x ~/menu.sh
+mkdir -p ~/xmrig
+curl -s -o ~/xmrig/menu.sh https://raw.githubusercontent.com/MOMOGUNx/xmrig-termux-installer/main/menu.sh
+chmod +x ~/xmrig/menu.sh
 
 echo ""
 echo "Pemasangan selesai! Jalankan menu dengan:"
