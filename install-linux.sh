@@ -1,14 +1,12 @@
 #!/bin/bash
 
 clear
-# green
 echo -e "\e[1;32m=========================================="
 echo -e "           Script by @MOMOGUNx"
 echo -e "           GOD IS ALWAYS GOOD"
 echo -e "==========================================\e[0m"
 sleep 2
 
-# yellow
 echo -e "\e[1;33mPreparing for installation...\e[0m"
 sleep 1
 
@@ -27,28 +25,27 @@ else
     exit 1
 fi
 
-# Clone dahulu
+# Clone repo XMRig
 echo "Cloning repo XMRig..."
-git clone https://github.com/xmrig/xmrig.git || { echo "Gagal clone repo."; exit 1; }
-
-if [ -d "xmrig" ]; then
-    cd xmrig
-else
-    echo "Direktori xmrig tidak wujud. Clone gagal?"
+if ! git clone https://github.com/xmrig/xmrig.git; then
+    echo "Gagal clone repo."
     exit 1
 fi
 
-# Install dependensi selepas clone
+cd xmrig || { echo "Direktori xmrig tidak wujud. Clone gagal?"; exit 1; }
+
+# Install dependensi penting (lebih lengkap)
 echo ""
 echo "Memasang pakej diperlukan..."
-sudo apt install -y cmake build-essential clang libssl-dev
+sudo apt update
+sudo apt install -y cmake build-essential clang libssl-dev libhwloc-dev libuv1-dev automake autoconf libtool
 
-# Compile
+# Compile XMRig
 echo ""
 echo "Memulakan proses compile XMRig (sabar, ini mungkin ambil masa)..."
-mkdir build && cd build
+mkdir -p build && cd build
 cmake -DWITH_HWLOC=OFF ..
-make -j$(nproc)
+make -j"$(nproc)"
 
 # Muat turun menu
 echo ""
