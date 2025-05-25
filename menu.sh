@@ -42,13 +42,13 @@ while true; do
             read -p "Masukkan alamat wallet Monero anda: " wallet
             echo "$wallet" > "$WALLET_FILE"
             echo "Wallet disimpan ke $WALLET_FILE"
-            read -n 1 -s -r -p "Tekan sebarang kekunci untuk kembali ke menu..."
+            read -n 1 -s -r -p "Press any key.."
             ;;
         2)
             read -p "Masukkan domain dan port pool (cth: pool.supportxmr.com:80): " pool
             echo "$pool" > "$POOL_FILE"
             echo "Pool disimpan ke $POOL_FILE"
-            read -n 1 -s -r -p "Tekan sebarang kekunci untuk kembali ke menu..."
+            read -n 1 -s -r -p "Press any key..."
             ;;
         3)
             read -p "Masukkan bilangan thread yang ingin digunakan (cth: 2), atau tekan Enter untuk auto: " threads
@@ -61,7 +61,7 @@ while true; do
             else
                 echo "Input tidak sah. Masukkan nombor sahaja."
             fi
-            read -n 1 -s -r -p "Tekan sebarang kekunci untuk kembali ke menu..."
+            read -n 1 -s -r -p "Press any key..."
             ;;
         4)
             wallet=$(get_wallet)
@@ -89,7 +89,7 @@ else
     fi
 fi
 
-read -n 1 -s -r -p "Press any key."
+read -n 1 -s -r -p "Press any key..."
             ;;
         5)
             echo "Keluar."
@@ -97,7 +97,7 @@ read -n 1 -s -r -p "Press any key."
             ;;
         *)
             echo "Pilihan tidak sah. Sila pilih 1-5."
-            read -n 1 -s -r -p "Tekan sebarang kekunci untuk kembali ke menu..."
+            read -n 1 -s -r -p "Press any key..."
             ;;
     esac
 done
