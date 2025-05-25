@@ -4,9 +4,9 @@ Auto install XMRig for Termux and mining menu
 # SCRIPT INSTALL COMMAND
 
 ```bash
-curl -O https://raw.githubusercontent.com/MOMOGUNx/xmrig-termux-installer/main/install.sh
-chmod +x install.sh
-bash install.sh
+curl -O https://raw.githubusercontent.com/MOMOGUNx/xmrig-termux-installer/main/install-termux.sh
+chmod +x install-termux.sh
+bash install-termux.sh
 
 ```
 # RUN
