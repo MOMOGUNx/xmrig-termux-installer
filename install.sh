@@ -9,7 +9,7 @@ echo -e "==========================================\e[0m"
 sleep 2
 
 # yellow
-echo -e "\e[1;33mPreparing for installation...\e[0m"
+echo -e "\e[1;33mPreparing for installation..\e[0m"
 sleep 1
 
 pkg install git -y
