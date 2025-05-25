@@ -25,7 +25,7 @@ else
     exit 1
 fi
 
-# Clone dahulu
+# Clone repo
 echo "Cloning repo XMRig..."
 git clone https://github.com/xmrig/xmrig.git || { echo "Gagal clone repo."; exit 1; }
 
@@ -36,7 +36,7 @@ else
     exit 1
 fi
 
-# Install dependensi selepas clone
+# Install dependensi
 echo ""
 echo "Memasang pakej diperlukan..."
 pkg update && pkg upgrade -y
