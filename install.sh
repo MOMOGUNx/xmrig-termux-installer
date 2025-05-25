@@ -1,7 +1,16 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-echo "Script by @MOMOGUNx"
-echo ""
+clear
+# green
+echo -e "\e[1;32m=========================================="
+echo -e "           Script by @MOMOGUNx"
+echo -e "           GOD IS ALWAYS GOOD"
+echo -e "==========================================\e[0m"
+sleep 2
+
+# yellow
+echo -e "\e[1;33mPreparing for installation...\e[0m"
+sleep 1
 
 pkg install git -y
 
