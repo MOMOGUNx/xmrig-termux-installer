@@ -9,3 +9,12 @@ curl -O https://raw.githubusercontent.com/MOMOGUNx/xmrig-termux-installer/main/i
 chmod +x install.sh
 bash install.sh
 
+```
+
+# FEATURES MENU
+
+- Set and save your **Monero wallet address**.
+- Set and save your preferred **mining pool (domain & port)**.
+- Configure the number of **CPU threads** to use for mining.
+- Launch XMRig mining with live output.
+- Persistent configuration files for wallet, pool, and threads.
