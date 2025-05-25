@@ -12,7 +12,7 @@ bash install-termux.sh
 # SCRIPT INSTALL LINUX DEBIAN && UBUNTU
 
 ```bash
-curl -O https://raw.githubusercontent.com/MOMOGUNx/xmrig-termux-installer/main/install-termux.sh
+curl -O https://raw.githubusercontent.com/MOMOGUNx/xmrig-termux-installer/main/install-linux.sh
 chmod +x install-linux.sh
 bash install-linux.sh
 
