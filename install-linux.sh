@@ -57,3 +57,8 @@ chmod +x ~/xmrig/menu.sh
 echo ""
 echo "Pemasangan selesai! Jalankan menu dengan:"
 echo "bash ~/xmrig/menu.sh"
+echo "WAITINGG....."
+
+sleep 2
+
+bash ~/xmrig/menu.sh
