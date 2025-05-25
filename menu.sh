@@ -51,11 +51,16 @@ while true; do
             read -n 1 -s -r -p "Press any key..."
             ;;
         3)
-            read -p "Masukkan bilangan thread yang ingin digunakan (cth: 2), atau tekan Enter untuk auto: " threads
+            max_threads=$(nproc)
+            read -p "Masukkan bilangan thread yang ingin digunakan (1 hingga $max_threads), atau tekan Enter untuk auto: " threads
             if [[ -z "$threads" ]]; then
                 rm -f "$THREAD_FILE"
                 echo "Thread dikembalikan ke mod auto."
             elif [[ "$threads" =~ ^[0-9]+$ ]]; then
+                if (( threads > max_threads )); then
+                    echo "Amaran: Peranti anda hanya menyokong hingga $max_threads thread. Menetapkan ke maksimum."
+                    threads=$max_threads
+                fi
                 echo "$threads" > "$THREAD_FILE"
                 echo "Thread ditetapkan ke $threads."
             else
