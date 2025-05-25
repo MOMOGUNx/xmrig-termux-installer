@@ -29,11 +29,11 @@ while true; do
     printf "${YELLOW}%-8s${NC}: %s\n" "Pool"    "$(get_pool)"
     printf "${YELLOW}%-8s${NC}: %s\n" "Threads" "$(get_threads)"
     echo -e "${CYAN}================================${NC}"
-    echo -e "${GREEN}1.${NC} Tukar wallet"
-    echo -e "${GREEN}2.${NC} Tukar pool domain & port"
-    echo -e "${GREEN}3.${NC} Tetapkan bilangan thread CPU"
-    echo -e "${GREEN}4.${NC} Mula mining"
-    echo -e "${GREEN}5.${NC} Keluar"
+    echo -e "${GREEN}1.${NC} Change wallet"
+    echo -e "${GREEN}2.${NC} Change pool domain & port"
+    echo -e "${GREEN}3.${NC} Set thread CPU"
+    echo -e "${GREEN}4.${NC} Start mining"
+    echo -e "${GREEN}5.${NC} Exit"
     echo -e "${CYAN}================================${NC}"
     read -p "Pilih menu [1-5]: " choice
 
@@ -70,7 +70,7 @@ while true; do
             if [[ "$wallet" == "Belum ditetapkan" ]]; then
                 echo "Wallet belum ditetapkan. Sila pilih menu 1 dahulu."
             else
-                echo "Memulakan mining..."
+                echo "Start mining..."
                 cd "$XMRIG_DIR" || { echo "XMRig tidak dijumpai."; exit 1; }
                 if [[ "$threads" == "Auto (default)" ]]; then
                     ./xmrig -o "$pool" -u "$wallet" --coin monero
