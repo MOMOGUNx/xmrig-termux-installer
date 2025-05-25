@@ -10,8 +10,8 @@ sleep 2
 echo -e "\e[1;33mPreparing for installation...\e[0m"
 sleep 1
 
-# Pastikan git dan curl ada
-sudo apt update
+# Install git dan curl ada
+sudo apt update 
 sudo apt install -y git curl
 
 # Semak whitelist
@@ -34,7 +34,7 @@ fi
 
 cd xmrig || { echo "Direktori xmrig tidak wujud. Clone gagal?"; exit 1; }
 
-# Install dependensi penting (lebih lengkap)
+# Install dependensi
 echo ""
 echo "Memasang pakej diperlukan..."
 sudo apt update
@@ -47,7 +47,7 @@ mkdir -p build && cd build
 cmake -DWITH_HWLOC=OFF ..
 make -j"$(nproc)"
 
-# Muat turun menu
+# Download menu
 echo ""
 echo "Muat turun menu..."
 mkdir -p ~/xmrig
