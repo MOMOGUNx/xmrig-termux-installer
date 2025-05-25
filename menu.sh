@@ -65,20 +65,31 @@ while true; do
             ;;
         4)
             wallet=$(get_wallet)
-            pool=$(get_pool)
-            threads=$(get_threads)
-            if [[ "$wallet" == "Belum ditetapkan" ]]; then
-                echo "Wallet belum ditetapkan. Sila pilih menu 1 dahulu."
-            else
-                echo "Start mining..."
-                cd "$XMRIG_DIR" || { echo "XMRig tidak dijumpai."; exit 1; }
-                if [[ "$threads" == "Auto (default)" ]]; then
-                    ./xmrig -o "$pool" -u "$wallet" --coin monero
-                else
-                    ./xmrig -o "$pool" -u "$wallet" --coin monero --threads "$threads"
-                fi
-            fi
-            read -n 1 -s -r -p "Tekan sebarang kekunci untuk kembali ke menu..."
+pool=$(get_pool)
+threads=$(get_threads)
+
+if [[ "$wallet" == "Belum ditetapkan" ]]; then
+    echo "Wallet belum ditetapkan. Sila pilih menu 1 dahulu."
+else
+    echo ""
+    echo "================================"
+    echo " Starting XMRig Miner"
+    echo "================================"
+    echo " Wallet : $wallet"
+    echo " Pool   : $pool"
+    echo " Threads: $threads"
+    echo "================================"
+    sleep 2
+    cd "$XMRIG_DIR" || { echo "XMRig tidak dijumpai."; exit 1; }
+    
+    if [[ "$threads" == "Auto (default)" ]]; then
+        ./xmrig -o "$pool" -u "$wallet" --coin monero
+    else
+        ./xmrig -o "$pool" -u "$wallet" --coin monero --threads "$threads"
+    fi
+fi
+
+read -n 1 -s -r -p "Press any key."
             ;;
         5)
             echo "Keluar."
