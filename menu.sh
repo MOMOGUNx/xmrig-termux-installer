@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/bash
 
 # Colour text
 GREEN='\033[1;32m'
@@ -9,6 +9,7 @@ NC='\033[0m' # Reset warna
 WALLET_FILE="$HOME/.xmrig_wallet"
 POOL_FILE="$HOME/.xmrig_pool"
 THREAD_FILE="$HOME/.xmrig_threads"
+WORKER_FILE="$HOME/.xmrig_worker"
 XMRIG_DIR="$HOME/xmrig/build"
 DEFAULT_POOL="pool.supportxmr.com:80"
 
@@ -21,6 +22,9 @@ function get_pool() {
 function get_threads() {
     cat "$THREAD_FILE" 2>/dev/null || echo "Auto (default)"
 }
+function get_worker() {
+    cat "$WORKER_FILE" 2>/dev/null || echo "Tiada (default)"
+}
 
 while true; do
     clear
@@ -28,14 +32,16 @@ while true; do
     printf "${YELLOW}%-8s${NC}: %s\n" "Wallet"  "$(get_wallet)"
     printf "${YELLOW}%-8s${NC}: %s\n" "Pool"    "$(get_pool)"
     printf "${YELLOW}%-8s${NC}: %s\n" "Threads" "$(get_threads)"
+    printf "${YELLOW}%-8s${NC}: %s\n" "Worker"  "$(get_worker)"
     echo -e "${CYAN}================================${NC}"
     echo -e "${GREEN}1.${NC} Change wallet"
     echo -e "${GREEN}2.${NC} Change pool domain & port"
     echo -e "${GREEN}3.${NC} Set thread CPU"
-    echo -e "${GREEN}4.${NC} Start mining"
-    echo -e "${GREEN}5.${NC} Exit"
+    echo -e "${GREEN}4.${NC} Change worker name"
+    echo -e "${GREEN}5.${NC} Start mining"
+    echo -e "${GREEN}6.${NC} Exit"
     echo -e "${CYAN}================================${NC}"
-    read -p "Pilih menu [1-5]: " choice
+    read -p "Pilih menu [1-6]: " choice
 
     case $choice in
         1)
@@ -69,39 +75,53 @@ while true; do
             read -n 1 -s -r -p "Press any key..."
             ;;
         4)
-            wallet=$(get_wallet)
-pool=$(get_pool)
-threads=$(get_threads)
-
-if [[ "$wallet" == "Belum ditetapkan" ]]; then
-    echo "Wallet belum ditetapkan. Sila pilih menu 1 dahulu."
-else
-    echo ""
-    echo "================================"
-    echo " Starting XMRig Miner"
-    echo "================================"
-    echo " Wallet : $wallet"
-    echo " Pool   : $pool"
-    echo " Threads: $threads"
-    echo "================================"
-    sleep 2
-    cd "$XMRIG_DIR" || { echo "XMRig tidak dijumpai."; exit 1; }
-    
-    if [[ "$threads" == "Auto (default)" ]]; then
-        ./xmrig -o "$pool" -u "$wallet" --coin monero
-    else
-        ./xmrig -o "$pool" -u "$wallet" --coin monero --threads "$threads"
-    fi
-fi
-
-read -n 1 -s -r -p "Press any key..."
+            read -p "Masukkan nama worker (biarkan kosong untuk default): " worker
+            echo "$worker" > "$WORKER_FILE"
+            echo "Worker name disimpan ke $WORKER_FILE"
+            read -n 1 -s -r -p "Press any key..."
             ;;
         5)
+            wallet=$(get_wallet)
+            pool=$(get_pool)
+            threads=$(get_threads)
+            worker=$(get_worker)
+
+            if [[ "$wallet" == "Belum ditetapkan" ]]; then
+                echo "Wallet belum ditetapkan. Sila pilih menu 1 dahulu."
+            else
+                echo ""
+                echo "================================"
+                echo " Starting XMRig Miner"
+                echo "================================"
+                echo " Wallet : $wallet"
+                echo " Pool   : $pool"
+                echo " Threads: $threads"
+                echo " Worker : $worker"
+                echo "================================"
+                sleep 2
+                cd "$XMRIG_DIR" || { echo "XMRig tidak dijumpai."; exit 1; }
+
+                # Gabung wallet + worker jika ada
+                if [[ -n "$worker" && "$worker" != "Tiada (default)" ]]; then
+                    wallet_full="${wallet}.${worker}"
+                else
+                    wallet_full="$wallet"
+                fi
+
+                if [[ "$threads" == "Auto (default)" ]]; then
+                    ./xmrig -o "$pool" -u "$wallet_full" --coin monero
+                else
+                    ./xmrig -o "$pool" -u "$wallet_full" --coin monero --threads "$threads"
+                fi
+            fi
+            read -n 1 -s -r -p "Press any key..."
+            ;;
+        6)
             echo "Keluar."
             exit 0
             ;;
         *)
-            echo "Pilihan tidak sah. Sila pilih 1-5."
+            echo "Pilihan tidak sah. Sila pilih 1-6."
             read -n 1 -s -r -p "Press any key..."
             ;;
     esac
