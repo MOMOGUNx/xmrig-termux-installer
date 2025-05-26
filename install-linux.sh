@@ -54,11 +54,15 @@ mkdir -p ~/xmrig
 curl -s -o ~/xmrig/menu.sh https://raw.githubusercontent.com/MOMOGUNx/xmrig-termux-installer/main/menu.sh
 chmod +x ~/xmrig/menu.sh
 
+#Bashrc
+if ! grep -q "alias menu=" ~/.bashrc; then
+    echo "alias menu='bash \$HOME/xmrig/menu.sh'" >> ~/.bashrc
+    echo "Alias 'menu' ditambah ke .bashrc"
+else
+    echo "Alias 'menu' sudah wujud dalam .bashrc"
+fi
+
 echo ""
-echo "Pemasangan selesai! Jalankan menu dengan:"
-echo "bash ~/xmrig/menu.sh"
-echo "WAITINGG....."
-
-sleep 2
-
-bash ~/xmrig/menu.sh
+echo "Installation done"
+clear
+reboot
