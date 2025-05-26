@@ -1,4 +1,4 @@
-#!/bin/bash
+I'm#!/bin/bash
 
 clear
 echo -e "\e[1;32m=========================================="
@@ -10,7 +10,7 @@ sleep 2
 echo -e "\e[1;33mPreparing for installation...\e[0m"
 sleep 1
 
-# Install git dan curl ada
+# Install git && curl
 sudo apt update 
 sudo apt install -y git curl
 
