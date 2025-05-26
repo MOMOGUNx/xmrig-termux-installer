@@ -64,7 +64,7 @@ fi
 
 echo ""
 echo "Installation done"
-ehco "reboot..please wait.."
+echo "reboot..please wait.."
 sleep 3
 clear
 reboot
