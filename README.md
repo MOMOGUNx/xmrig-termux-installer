@@ -22,7 +22,11 @@ bash install-linux.sh
 
 ```bash
 bash ~/xmrig/menu.sh
+```
+or
 
+```bash
+menu
 ```
 
 # FEATURES MENU
