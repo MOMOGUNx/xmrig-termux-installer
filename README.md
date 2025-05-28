@@ -38,5 +38,4 @@ menu
 - Persistent configuration files for wallet, pool, and threads.
 - Supoort Multi Pool 
 
-```bash
-![Screenshot_20250528-160322](https://github.com/user-attachments/assets/37f079f7-d726-4516-905c-786c511a6a2b)
+![Screenshot_20250528-160322](https://github.com/user-attachments/assets/61c8a1bf-f9d3-41f5-93e1-c139f6754d43)
