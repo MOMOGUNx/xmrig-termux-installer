@@ -31,11 +31,13 @@ menu
 
 # FEATURES MENU
 
-- Set and save your **Monero wallet address**.
+- Set and save your wallet info
 - Set and save your preferred **mining pool (domain & port)**.
 - Configure the number of **CPU threads** to use for mining.
 - Launch XMRig mining with live output.
 - Persistent configuration files for wallet, pool, and threads.
-- Supoort Multi Pool 
 
-![Screenshot_20250528-160322](https://github.com/user-attachments/assets/61c8a1bf-f9d3-41f5-93e1-c139f6754d43)
+
+![Screenshot_20250528-145017](https://github.com/user-attachments/assets/99b699f4-238c-46c8-b766-19bbb90ed51e)
+![Screenshot_20250528-160940](https://github.com/user-attachments/assets/f921bdc8-7d10-4fcb-995c-514fdb39a5de)
+
