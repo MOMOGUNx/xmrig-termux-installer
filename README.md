@@ -36,3 +36,4 @@ menu
 - Configure the number of **CPU threads** to use for mining.
 - Launch XMRig mining with live output.
 - Persistent configuration files for wallet, pool, and threads.
+- Supoort Multi Pool 
