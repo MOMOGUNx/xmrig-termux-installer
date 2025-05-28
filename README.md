@@ -37,3 +37,6 @@ menu
 - Launch XMRig mining with live output.
 - Persistent configuration files for wallet, pool, and threads.
 - Supoort Multi Pool 
+
+```bash
+![Screenshot_20250528-160322](https://github.com/user-attachments/assets/37f079f7-d726-4516-905c-786c511a6a2b)
