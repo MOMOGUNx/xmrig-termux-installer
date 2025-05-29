@@ -6,6 +6,7 @@ YELLOW='\033[1;33m'
 CYAN='\033[1;36m'
 NC='\033[0m'
 
+# File config
 WALLET_FILE="$HOME/.xmrig_wallet"
 POOL_FILE="$HOME/.xmrig_pool"
 THREAD_FILE="$HOME/.xmrig_threads"
@@ -14,15 +15,18 @@ COIN_FILE="$HOME/.xmrig_coin"
 ALGO_FILE="$HOME/.xmrig_algo"
 TLS_FILE="$HOME/.xmrig_tls"
 XMRIG_DIR="$HOME/xmrig/build"
-DEFAULT_POOL="rx.unmineable.com:3333"
 
-function get_wallet() { cat "$WALLET_FILE" 2>/dev/null || echo "Not set"; }
-function get_pool() { cat "$POOL_FILE" 2>/dev/null || echo "$DEFAULT_POOL"; }
-function get_threads() { cat "$THREAD_FILE" 2>/dev/null || echo "Auto (default)"; }
-function get_worker() { cat "$WORKER_FILE" 2>/dev/null || echo "None (default)"; }
-function get_coin() { cat "$COIN_FILE" 2>/dev/null || echo "DOGE"; }
-function get_algo() { cat "$ALGO_FILE" 2>/dev/null || echo "rx/0"; }
-function get_tls() { cat "$TLS_FILE" 2>/dev/null || echo "no"; }
+# Default pool (HashVault)
+DEFAULT_POOL="pool.hashvault.pro:80"
+
+# Getter functions
+get_wallet() { cat "$WALLET_FILE" 2>/dev/null || echo "Not set"; }
+get_pool()   { cat "$POOL_FILE" 2>/dev/null || echo "$DEFAULT_POOL"; }
+get_threads(){ cat "$THREAD_FILE" 2>/dev/null || echo "Auto (default)"; }
+get_worker() { cat "$WORKER_FILE" 2>/dev/null || echo "None (default)"; }
+get_coin()   { cat "$COIN_FILE" 2>/dev/null || echo "XMR"; }
+get_algo()   { cat "$ALGO_FILE" 2>/dev/null || echo "rx/0"; }
+get_tls()    { cat "$TLS_FILE" 2>/dev/null || echo "no"; }
 
 while true; do
     clear
@@ -53,7 +57,7 @@ while true; do
             echo "$wallet" > "$WALLET_FILE"
             ;;
         2)
-            read -p "Enter pool domain and port (e.g., rx.unmineable.com:3333): " pool
+            read -p "Enter pool domain and port (e.g., pool.hashvault.pro:80): " pool
             echo "$pool" > "$POOL_FILE"
             ;;
         3)
@@ -74,7 +78,7 @@ while true; do
             echo "$worker" > "$WORKER_FILE"
             ;;
         5)
-            read -p "Enter coin symbol (e.g., DOGE, SHIB): " coin
+            read -p "Enter coin symbol (e.g., XMR, DOGE, SHIB): " coin
             echo "$coin" > "$COIN_FILE"
             ;;
         6)
@@ -113,9 +117,16 @@ while true; do
             echo " Threads: $threads"
             echo "================================"
             sleep 2
+
             cd "$XMRIG_DIR" || { echo "XMRig not found."; exit 1; }
 
-            [[ -n "$worker" && "$worker" != "None (default)" ]] && wallet_full="${coin}:${wallet}.${worker}" || wallet_full="${coin}:${wallet}"
+            # Tentukan format wallet sesuai pool
+            if [[ "$pool" == *"unmineable"* ]]; then
+                [[ -n "$worker" && "$worker" != "None (default)" ]] && wallet_full="${coin}:${wallet}.${worker}" || wallet_full="${coin}:${wallet}"
+            else
+                [[ -n "$worker" && "$worker" != "None (default)" ]] && wallet_full="${wallet}.${worker}" || wallet_full="$wallet"
+            fi
+
             [[ "$tls" == "yes" ]] && tls_flag="--tls" || tls_flag=""
 
             if [[ "$threads" == "Auto (default)" ]]; then
