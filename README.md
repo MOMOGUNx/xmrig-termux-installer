@@ -33,9 +33,13 @@ menu
 
 - Set and save your wallet info
 - Set and save your preferred **mining pool (domain & port)**.
+- Tested menu on unmineable and hashvault
 - Configure the number of **CPU threads** to use for mining.
 - Launch XMRig mining with live output.
 - Persistent configuration files for wallet, pool, and threads.
+
+## SUPPORT
+  Dm me on telegram @MOMOGUNx for any bug
 
 
 ![Screenshot_20250528-145017](https://github.com/user-attachments/assets/99b699f4-238c-46c8-b766-19bbb90ed51e)
